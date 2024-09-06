@@ -32,7 +32,7 @@ const Posts = () => {
                     >
                         <div className='relative'>
                             <span className='absolute top-0 right-0 bg-custom-green p-2 text-white rounded-b text-xs sm:text-base'>{post.category}</span>
-                            <Image src={post.image || "/not_found.jpg"} alt={post.title} width={400} height={400} className='object-fill w-full h-[40vh]' />
+                            <Image src={post.image as string || "/not_found.jpg"} alt={post.title} width={400} height={400} className='object-fill w-full h-[40vh]' />
                         </div>
                         <div className='py-4 px-6 flex flex-col gap-2 items-start'>
                             <div className='flex flex-col gap-1'>

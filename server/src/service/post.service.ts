@@ -57,7 +57,7 @@ export class PostService {
     static checkImageUploaded(file: Express.Multer.File | undefined) {
         let imagePath
         if (file) {
-            imagePath = `/uploads/${file.filename}`
+            imagePath = `${process.env.IMAGE_BACKEND_LINK}/uploads/${file.filename}`
         } else {
             imagePath = null;
             throw new Error("No image uploaded")

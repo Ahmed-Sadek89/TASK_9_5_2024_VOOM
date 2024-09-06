@@ -25,7 +25,7 @@ const Login = () => {
             <FormInput type="email" name="email" placeholder="Email address" />
             <FormInput type="password" name="password" placeholder="Password" />
             {error && <p className="text-xs text-red-400 text-center">{data?.message}</p>}
-            <ButtonSubmit btnValue='Login' />
+            <ButtonSubmit btnValue='Login' colors="bg-green-800 hover:bg-green-700 disabled:bg-custom-green2"/>
         </form>
     )
 }

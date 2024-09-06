@@ -8,7 +8,6 @@ export class PostController {
         const { page, sort_by } = req.query;
         try {
             const posts = PostService.all(Number(page), sort_by as keyof Post)
-            console.log(req.query)
             return res.status(200).json({
                 status: 200,
                 count: posts.length,
@@ -58,6 +57,7 @@ export class PostController {
     insert(req: Request, res: Response) {
         const { title, description, category }: Omit<Post, 'id' | 'created_at'> = req.body;
         if (!title || !description || !category) {
+            console.log({ title, description, category })
             return res.status(400).json({
                 status: 400,
                 message: "Bad request, title, description, and category are required"

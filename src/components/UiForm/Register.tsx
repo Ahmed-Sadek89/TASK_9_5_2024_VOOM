@@ -11,9 +11,7 @@ const Register = () => {
     const dispatch = useDispatch<AppDispatch>();
     const { data, error } = useSelector((state: RootState) => state.register_reducer);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget);
+    const handleSubmit = async (formData: FormData) => {
         const username = formData.get("username") as string
         const email = formData.get("email") as string
         const password = formData.get("password") as string
@@ -26,12 +24,12 @@ const Register = () => {
             })
     }
     return (
-        <form className="flex flex-col gap-y-8" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-y-8" action={handleSubmit}>
             <FormInput type="text" name="username" placeholder="Username" />
             <FormInput type="email" name="email" placeholder="Email address" />
             <FormInput type="password" name="password" placeholder="Password" />
             {error && <p className="text-xs text-red-400 text-center">{data?.message}</p>}
-            <ButtonSubmit btnValue='Sign up' />
+            <ButtonSubmit btnValue='Sign up' colors="bg-green-800 hover:bg-green-700 disabled:bg-custom-green2"/>
         </form>
     )
 }

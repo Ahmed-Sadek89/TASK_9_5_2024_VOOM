@@ -3,6 +3,6 @@ export type Post = {
     title: string,
     description: string,
     category: string,
-    image: string,
+    image: File | string,
     created_at: Date
 }
