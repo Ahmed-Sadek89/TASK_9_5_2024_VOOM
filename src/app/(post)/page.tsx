@@ -1,3 +1,5 @@
+import Pagination from "@/components/Pagination/Pagination";
+import Posts from "@/components/Posts/Posts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,8 +9,11 @@ export const metadata: Metadata = {
 
 const page = () => {
     return (
-        <div>
-            homepage
+        <div className="custom-container pb-5 pt-10">
+            <div className="flex flex-col gap-7">
+                <Posts />
+                <Pagination />
+            </div>
         </div>
     )
 }

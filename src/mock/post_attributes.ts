@@ -3,6 +3,5 @@ export const post_attributes = [
     "title",
     "description",
     "category",
-    "image",
     "created_at"
 ]
