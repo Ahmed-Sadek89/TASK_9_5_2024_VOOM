@@ -1,4 +1,5 @@
 import Header from "@/components/Header/Header";
+import PostLayout from "@/components/PostLayout/PostLayout";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -12,12 +13,9 @@ export default async function RootLayout({
         redirect('/login')
     }
     return (
-        <>
-            <Header />
-            <div className="min-h-[calc(100vh-1rem)]">
-                {children}
-            </div>
-        </>
+        <PostLayout>
+            {children}
+        </PostLayout >
     )
 }
 

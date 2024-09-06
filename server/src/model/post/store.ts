@@ -6,7 +6,7 @@ export const posts: Post[] = [
         title: "Introduction to Football",
         description: "An in-depth guide to the basics of football.",
         category: "Sports",
-        image: "https://example.com/images/football.jpg",
+        image: "https://images.pexels.com/photos/1193743/pexels-photo-1193743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         created_at: new Date("2023-01-15"),
     },
     {
@@ -14,7 +14,7 @@ export const posts: Post[] = [
         title: "Latest in AI Technologies",
         description: "Exploring the advancements in Artificial Intelligence.",
         category: "Technologies",
-        image: "https://example.com/images/ai.jpg",
+        image: "https://images.pexels.com/photos/596710/pexels-photo-596710.jpeg?auto=compress&cs=tinysrgb&w=600",
         created_at: new Date("2023-03-22"),
     },
     {
@@ -30,7 +30,7 @@ export const posts: Post[] = [
         title: "History of Renaissance Art",
         description: "A look into the history of art during the Renaissance period.",
         category: "Arts",
-        image: "https://example.com/images/renaissance-art.jpg",
+        image: "https://images.pexels.com/photos/45229/drop-of-water-inject-water-drip-45229.jpeg?auto=compress&cs=tinysrgb&w=600",
         created_at: new Date("2023-07-01"),
     },
     {
@@ -38,7 +38,7 @@ export const posts: Post[] = [
         title: "Advancements in Medicenes",
         description: "New developments in the medical field.",
         category: "Medicenes",
-        image: "https://example.com/images/medicines.jpg",
+        image: "https://images.pexels.com/photos/1561020/pexels-photo-1561020.jpeg?auto=compress&cs=tinysrgb&w=600",
         created_at: new Date("2023-08-25"),
     },
     {
@@ -46,7 +46,7 @@ export const posts: Post[] = [
         title: "Gourmet Cooking Techniques",
         description: "Elevate your cooking with these gourmet techniques.",
         category: "Foods",
-        image: "https://example.com/images/gourmet-cooking.jpg",
+        image: "https://images.pexels.com/photos/1582619/pexels-photo-1582619.jpeg?auto=compress&cs=tinysrgb&w=600",
         created_at: new Date("2023-09-05"),
     },
     {
