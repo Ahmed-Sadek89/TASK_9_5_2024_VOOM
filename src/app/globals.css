@@ -6,3 +6,16 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+.custom-container {
+  /* @apply container mx-auto px-2 max-w-7xl */
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0px auto;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
