@@ -3,9 +3,14 @@ import React, { Suspense } from 'react'
 import DropDown from './DropDown'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Cookies from 'js-cookie';
 
 const Header = () => {
     const pathname = usePathname()
+    const logout = () => {
+        Cookies.remove("token");
+        window.location.href = '/login';
+    }
     return (
         <header className='bg-custom-green py-3 text-white'>
             <div className="custom-container">
@@ -24,7 +29,10 @@ const Header = () => {
                                 <DropDown />
                             </Suspense>
                         }
-                        <button className='rounded text-white bg-red-700 p-2 text-sm transition duration-300 hover:bg-red-600'>Logout</button>
+                        <button
+                            className='rounded text-white bg-red-700 p-2 text-sm transition duration-300 hover:bg-red-600'
+                            onClick={logout}
+                        >Logout</button>
                     </div>
                 </div>
             </div>

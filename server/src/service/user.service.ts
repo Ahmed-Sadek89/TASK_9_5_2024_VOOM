@@ -3,9 +3,16 @@ import { users } from "../model/user/store";
 
 export class UserService {
     static all() {
-        return users
+        const filteredusers = users.map((key) => {
+            return {
+                id: key.id,
+                username: key.username,
+                email: key.email,
+            }
+        })
+        return filteredusers
     }
-    
+
     static validateRegistrationInput(username: string, email: string, password: string): boolean {
         return Boolean(username && email && password);
     }
@@ -18,15 +25,20 @@ export class UserService {
         return users.some(user => user.email === email);
     }
 
-    static createUser(username: string, email: string, password: string): User {
+    static createUser(username: string, email: string, password: string): Omit<User, "password"> {
+        const id = users.length + 1;
         const newUser: User = {
-            id: users.length + 1,
+            id,
             username,
             email,
             password
         };
         users.push(newUser);
-        return newUser;
+        return {
+            id,
+            username,
+            email,
+        };
     }
     static findUserByEmail(email: string): User | undefined {
         return users.find(user => user.email === email);

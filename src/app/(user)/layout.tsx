@@ -1,18 +1,20 @@
-import UserLinks from '@/components/UserLinks/UserLinks';
+import UserLayout from '@/components/UserLayout/UserLayout';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 const layout = ({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) => {
-
+    const token = cookies().get("token")?.value;
+    if(token) {
+        redirect('/')
+    }
     return (
-        <main className='w-full h-screen flex items-center justify-center bg-custom-green container'>
-            <div className='px-10 pt-10 pb-5 rounded-2xl shadow-2xl bg-custom-black w-full sm:w-1/3 flex flex-col gap-4'>
-                <UserLinks />
-                <div className='flex flex-col gap-4'>{children}</div>
-            </div>
-        </main>
+        <UserLayout>
+            {children}
+        </UserLayout>
     )
 }
 
