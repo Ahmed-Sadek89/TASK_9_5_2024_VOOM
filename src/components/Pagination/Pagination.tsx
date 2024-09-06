@@ -1,37 +1,54 @@
 "use client"
-import React, { useState } from 'react'
-import { posts } from '@/mock/posts'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
+import { Post } from '@/types'
 
 const Pagination = () => {
-    const postsPerPage = 5
-    const totalPages = Math.ceil(posts.length / postsPerPage)
-    const [currentPage, setCurrentPage] = useState(1)
+    const { data } = useSelector((state: RootState) => state.postAll_reducer);
+    const [posts, setPosts] = useState<Post[]>([])
+    const [totalCount, setTotalCount] = useState(0)
+    useEffect(() => {
+        if (data) {
+            setTotalCount(data?.totalCount as number)
+            setPosts(data?.posts as Post[])
+        }
+    }, [data])
+    const postsPerPage = 5;
+    const totalPages = Math.ceil(totalCount / postsPerPage);
 
-    // Get the posts for the current page
+    const searchParam = useSearchParams();
+    const initialPage = Number(searchParam.get("page")) || 1;
 
+    const [currentPage, setCurrentPage] = useState(initialPage);
+
+    useEffect(() => {
+        setCurrentPage(initialPage);
+    }, [initialPage]);
 
     // Handle page change
     const handlePageChange = (pageNumber: number) => {
-        setCurrentPage(pageNumber)
-    }
-    const searchParam = useSearchParams();
+        if (pageNumber !== currentPage && pageNumber >= 1 && pageNumber <= totalPages) {
+            setCurrentPage(pageNumber);
+        }
+    };
+
     return (
         <div className="container mx-auto px-4">
-
             {
-                totalPages > 1 && (
+                posts && totalPages > 1 && (
                     <nav className="flex flex-row flex-nowrap justify-evenly sm:justify-between md:justify-center items-center" aria-label="Pagination">
                         {/* Previous Page Link */}
                         <Link
                             className={`flex w-10 h-10 mr-1 justify-center items-center rounded-full bg-custom-black text-white ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}
                             href={{
                                 pathname: '/',
-                                query: { page: currentPage === 1 ? "1" : currentPage - 1, sort_by: searchParam.get("sort_by") || "" }
+                                query: { page: currentPage > 1 ? currentPage - 1 : 1, sort_by: searchParam.get("sort_by") || "" }
                             }}
                             title="Previous Page"
-                            onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                            onClick={() => handlePageChange(currentPage - 1)}
                         >
                             <span className="sr-only">Previous Page</span>
                             <svg className="block w-4 h-4 fill-current" viewBox="0 0 256 512" aria-hidden="true" role="presentation">
@@ -56,17 +73,14 @@ const Pagination = () => {
                         ))}
 
                         {/* Next Page Link */}
-                        {
-
-                        }
                         <Link
                             className={`flex w-10 h-10 ml-1 justify-center items-center rounded-full bg-custom-black text-white ${currentPage === totalPages && 'opacity-50 cursor-not-allowed'}`}
                             href={{
                                 pathname: '/',
-                                query: { page: currentPage === totalPages ? searchParam.get("page") : currentPage + 1, sort_by: searchParam.get("sort_by") || "" }
+                                query: { page: currentPage < totalPages ? currentPage + 1 : totalPages, sort_by: searchParam.get("sort_by") || "" }
                             }}
                             title="Next Page"
-                            onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                            onClick={() => handlePageChange(currentPage + 1)}
                         >
                             <span className="sr-only">Next Page</span>
                             <svg className="block w-4 h-4 fill-current" viewBox="0 0 256 512" aria-hidden="true" role="presentation">
@@ -80,4 +94,4 @@ const Pagination = () => {
     )
 }
 
-export default Pagination
+export default Pagination;

@@ -13,7 +13,9 @@ const AddPost = () => {
     const router = useRouter()
     const dispatch = useDispatch<AppDispatch>()
 
-    const handleSubmit = async (formData: FormData) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
         const title = formData.get("title") as string
         const description = formData.get("description") as string
         const category = formData.get("category") as string
@@ -33,7 +35,7 @@ const AddPost = () => {
             })
     }
     return (
-        <form className="flex flex-col gap-y-8" action={handleSubmit} encType="multipart/form-data">
+        <form className="flex flex-col gap-y-8" onSubmit={handleSubmit} encType="multipart/form-data">
             <FormInput type="text" name="title" placeholder="Title" />
             <TextAreaInput name="description" placeholder="Description" />
             <FieldSetInput />

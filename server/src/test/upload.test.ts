@@ -8,7 +8,7 @@ describe('PostService.checkImageUploaded', () => {
 
         const result = PostService.checkImageUploaded(mockFile);
 
-        expect(result).toBe('/uploads/test-image.jpg');
+        expect(result).toBe(`${process.env.IMAGE_BACKEND_LINK}/uploads/test-image.jpg`);
     });
 
     it('should throw an error when no image is uploaded or if the uploaded file is not image', () => {

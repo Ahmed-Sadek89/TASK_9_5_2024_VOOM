@@ -1,19 +1,32 @@
 import { Category } from '@/mock/categories'
 import React from 'react'
 
-type props = {
+type Props = {
     defaultValue?: string
 }
-const FieldSetInput = ({ defaultValue }: props) => {
+
+const FieldSetInput = ({ defaultValue }: Props) => {
     return (
         <fieldset className='text-custom-white'>
             <div className="relative bg-transparent border border-custom-green rounded-md text-white overflow-hidden">
-                <label htmlFor="frm-whatever" className="sr-only ">Category</label>
-                <select className="appearance-none w-full py-1 px-2 bg-transparent border text-white border-custom-green rounded-md" name="category" id="frm-whatever" defaultValue={defaultValue}>
-                    <option className='text-custom-black' value="" >Please choose one</option>
+                <label htmlFor="frm-whatever" className="sr-only">Category</label>
+                <select
+                    className="appearance-none w-full py-1 px-2 bg-transparent border text-white border-custom-green rounded-md"
+                    name="category"
+                    id="frm-whatever"
+                    defaultValue={defaultValue}
+                >
+                    <option className='text-custom-black' value="">Please choose one</option>
                     {
-                        Category.map(index => (
-                            <option key={index} className='text-custom-black' value={index}>{index}</option>
+                        Category.map((category) => (
+                            <option
+                                key={category}
+                                className='text-custom-black'
+                                value={category}
+                                selected={defaultValue === category}
+                            >
+                                {category}
+                            </option>
                         ))
                     }
                 </select>

@@ -38,7 +38,7 @@ describe("PostServices", () => {
             const result = PostService.all(page, sortBy);
 
             expect(result).toBeDefined();
-            expect(result.length).toBeLessThanOrEqual(5); // Assuming page size of 5
+            expect(result.posts.length).toBeLessThanOrEqual(5); // Assuming page size of 5
         });
 
         it('should throw an error when an invalid page number is provided', () => {
@@ -57,7 +57,7 @@ describe("PostServices", () => {
             const result = PostService.all(page, '' as keyof Post);
 
             expect(result).toBeDefined();
-            expect(result.length).toBeLessThanOrEqual(5);
+            expect(result.posts.length).toBeLessThanOrEqual(5);
         });
     });
 
@@ -108,7 +108,7 @@ describe("PostServices", () => {
             expect(updatedPost).toBeDefined();
             expect(updatedPost?.title).toBe('Updated Title');
             expect(updatedPost?.category).toBe('Technologies');
-            expect(updatedPost?.image).toBe(imagePath);
+            expect(updatedPost?.image).toBe(`${process.env.IMAGE_BACKEND_LINK}${imagePath}`);
         });
 
         it('should return null if the post is not found', () => {

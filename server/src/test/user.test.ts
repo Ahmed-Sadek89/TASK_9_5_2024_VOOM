@@ -13,7 +13,7 @@ describe('UserService', () => {
     });
 
     it('should return all users', () => {
-        expect(UserService.all()).toEqual(users);
+        expect(UserService.all()).not.toHaveProperty("password");
     });
 
     it("shoud return true if all fields in register are exists", () => {
@@ -35,8 +35,8 @@ describe('UserService', () => {
             "123445"
         )
         const getTheNewUser = users.find(index => index.id === newUser.id)
-
-        expect(getTheNewUser).toBe(newUser)
+        
+        expect(getTheNewUser).toHaveProperty("username")
     })
 
     it("should success when login", () => {

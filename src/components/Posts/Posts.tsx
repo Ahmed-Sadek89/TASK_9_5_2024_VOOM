@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Post } from '@/types'
 import { useSearchParams } from 'next/navigation'
 import { formateDate } from '@/lib/formateDate'
+import DeletePost from './DeletePost'
 
 const Posts = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +23,7 @@ const Posts = () => {
         dispatch(all({ page: page || "1", sort_by: sort_by || "" }))
     }, [dispatch, page, sort_by])
 
+    
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6 items-start'>
             {
@@ -44,9 +46,7 @@ const Posts = () => {
                                 <Link href={`/edit/${post.id}`} className='bg-blue-700 text-sm mt-4 rounded py-1 px-3 transition duration-300 hover:bg-blue-600 text-white w-auto'>
                                     Edit
                                 </Link>
-                                <button type='button' className='bg-red-700 text-sm mt-4 rounded py-1 px-3 transition duration-300 hover:bg-red-600 text-white w-auto'>
-                                    delete
-                                </button>
+                                <DeletePost id={post.id} />
                             </div>
                         </div>
                     </div>

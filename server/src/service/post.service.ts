@@ -42,7 +42,8 @@ export class PostService {
         } else {
             sortedPosts = posts
         }
-        return page ? sortedPosts.slice((page - 1) * 5, page * 5) : sortedPosts.slice(0, 5)
+        const finalResult = page ? sortedPosts.slice((page - 1) * 5, page * 5) : sortedPosts.slice(0, 5);
+        return { totalCount: posts.length, posts: finalResult }
     }
 
     static getById(id: number) {
@@ -97,7 +98,7 @@ export class PostService {
         }
 
         const existingPost = posts[index];
-        const updatedPost = { ...existingPost, ...updatedData, image: imagePath ?? existingPost.image };
+        const updatedPost = { ...existingPost, ...updatedData, image: imagePath ? `${process.env.IMAGE_BACKEND_LINK}${imagePath}` : existingPost.image };
 
         posts[index] = updatedPost;
         return updatedPost;

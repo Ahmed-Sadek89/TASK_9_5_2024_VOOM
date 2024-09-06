@@ -7,9 +7,10 @@ export class PostController {
     all(req: Request, res: Response) {
         const { page, sort_by } = req.query;
         try {
-            const posts = PostService.all(Number(page), sort_by as keyof Post)
+            const { posts, totalCount } = PostService.all(Number(page), sort_by as keyof Post)
             return res.status(200).json({
                 status: 200,
+                totalCount,
                 count: posts.length,
                 posts
             })

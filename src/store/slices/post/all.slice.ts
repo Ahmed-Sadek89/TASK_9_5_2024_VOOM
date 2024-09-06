@@ -14,6 +14,7 @@ interface PostOutput {
     message?: string,
     count?: number,
     posts?: Post[]
+    totalCount?: number,
 }
 
 interface state {
