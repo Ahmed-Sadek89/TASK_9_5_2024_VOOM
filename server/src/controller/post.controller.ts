@@ -22,6 +22,22 @@ export class PostController {
         }
     }
 
+    getById(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const post = PostService.getById(Number(id))
+            return res.status(200).json({
+                status: 200,
+                post
+            })
+        } catch (error: any) {
+            return res.status(404).json({
+                status: 404,
+                message: error.message
+            })
+        }
+    }
+
     delete(req: Request, res: Response) {
         const id = parseInt(req.params.id);
 
@@ -57,7 +73,7 @@ export class PostController {
 
         try {
             let imagePath = PostService.checkImageUploaded(req.file)
-            
+
             const newPost = PostService.addPost({ title, description, category }, imagePath);
 
             return res.status(201).json({

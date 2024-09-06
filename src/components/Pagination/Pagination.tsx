@@ -22,7 +22,7 @@ const Pagination = () => {
 
             {
                 totalPages > 1 && (
-                    <nav className="flex flex-row flex-nowrap justify-between md:justify-center items-center" aria-label="Pagination">
+                    <nav className="flex flex-row flex-nowrap justify-evenly sm:justify-between md:justify-center items-center" aria-label="Pagination">
                         {/* Previous Page Link */}
                         <Link
                             className={`flex w-10 h-10 mr-1 justify-center items-center rounded-full bg-custom-black text-white ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}

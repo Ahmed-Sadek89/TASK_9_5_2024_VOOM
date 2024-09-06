@@ -61,6 +61,24 @@ describe("PostServices", () => {
         });
     });
 
+    describe("PostService.getById", () => {
+        it('should return the post when a valid id is provided', () => {
+            const post = PostService.getById(1)
+            expect(post).toEqual({
+                id: 1,
+                title: "Introduction to Football",
+                description: "An in-depth guide to the basics of football.",
+                category: "Sports",
+                image: "https://example.com/images/football.jpg",
+                created_at: new Date("2023-01-15"),
+            })
+        })
+
+        it('should throw an error when an invalid id is provided', () => {
+            expect(() => PostService.getById(999)).toThrow("No post with this id")
+        })
+    })
+
     it("should insert new Post", () => {
         const newPost = {
             title: "new one",

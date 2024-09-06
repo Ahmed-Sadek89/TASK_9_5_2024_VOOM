@@ -8,6 +8,7 @@ const postController = new PostController();
 
 router.use(checkAuth)
 router.get("/all", postController.all)
+router.get('/:id', postController.getById)
 router.delete('/:id', postController.delete)
 
 router.use(upload.single('image'))

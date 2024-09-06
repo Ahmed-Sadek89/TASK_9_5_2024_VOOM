@@ -45,6 +45,15 @@ export class PostService {
         return page ? sortedPosts.slice((page - 1) * 5, page * 5) : sortedPosts.slice(0, 5)
     }
 
+    static getById(id: number) {
+        const post = posts.find(index => index.id === id)
+        if (post) {
+            return post
+        } else {
+            throw new Error("No post with this id")
+        }
+    }
+
     static checkImageUploaded(file: Express.Multer.File | undefined) {
         let imagePath
         if (file) {
